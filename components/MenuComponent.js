@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { DISHES } from '../shared/dishes';
 
-function Menu(props) {
+class Menu extends Component {
 
-    const renderMenuItem = ({item, index}) => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            dishes: DISHES
+        };
+    }
+    static navigationOptions = {
+        title: 'Menu'
+    };
+
+    renderMenuItem = ({item, index}) => {
 
         return (
             <ListItem
@@ -17,14 +28,18 @@ function Menu(props) {
           />
         );
     };
-
-    return (
+    render(){
+        const { navigate } = this.props.navigation;
+        return (
             <FlatList 
-                data={props.dishes}
+            data={this.state.dishes}
                 renderItem={renderMenuItem}
                 keyExtractor={item => item.id.toString()}
+                onPress={() => navigate('Dishdetail', { dishId: item.id })}
                 />
     );
+    }
+    
 }
 
 
