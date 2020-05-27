@@ -17,7 +17,6 @@ class Menu extends Component {
 		title: 'Menu'
 	};
 
-
 	render() {
 		const renderMenuItem = ({ item, index }) => {
 			return (
