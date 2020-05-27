@@ -7,11 +7,11 @@ import Contact from './ContactComponent';
 import DishDetail from './DishDetailComponent';
 import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-import {connect} from 'react-redux';
-import {fetchDishes, fetchComments, fetchPromos, fetchLeaders} from '../redux/ActionCretors'; 
+import { connect } from 'react-redux';
+import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
-  return{
+  return {
   }
 };
 
@@ -89,14 +89,14 @@ const MenuNavigator = createStackNavigator({
     }
   }
 );
-const  CustomDrawerContentComponent = (props) => (
+const CustomDrawerContentComponent = (props) => (
   <ScrollView>
-    <SafeAreaView style={styles.conatainer} forceInset={{top: 'always', horizontal: 'never'}}>
+    <SafeAreaView style={styles.conatainer} forceInset={{ top: 'always', horizontal: 'never' }}>
       <View style={styles.drawerHeader}>
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Image source={require('./images/logo.png')} style={styles.drawerImage} />
         </View>
-        <View style={{flex: 2}}>
+        <View style={{ flex: 2 }}>
           <Text style={styles.drawerHeaderText}>Ristorante Con Fusion</Text>
         </View>
       </View>
@@ -111,7 +111,7 @@ const MainNavigator = createDrawerNavigator({
     navigationOptions: {
       title: 'Home',
       drawerLabel: 'Home',
-      drawerIcon: ({tintColor}) => (<Icon name="home" type="font-awesome" size={24} color={tintColor} />)
+      drawerIcon: ({ tintColor }) => (<Icon name="home" type="font-awesome" size={24} color={tintColor} />)
     }
   },
   About:
@@ -120,7 +120,7 @@ const MainNavigator = createDrawerNavigator({
     navigationOptions: {
       title: 'About Us',
       drawerLabel: 'About Us',
-      drawerIcon: ({tintColor}) => (<Icon name="info-circle" type="font-awesome" size={24} color={tintColor} />)
+      drawerIcon: ({ tintColor }) => (<Icon name="info-circle" type="font-awesome" size={24} color={tintColor} />)
     }
   },
   Menu:
@@ -129,7 +129,7 @@ const MainNavigator = createDrawerNavigator({
     navigationOptions: {
       title: 'Menu',
       drawerLabel: 'Menu',
-      drawerIcon: ({tintColor}) => (<Icon name="list" type="font-awesome" size={24} color={tintColor} />)
+      drawerIcon: ({ tintColor }) => (<Icon name="list" type="font-awesome" size={24} color={tintColor} />)
     },
   },
   Contact:
@@ -138,7 +138,7 @@ const MainNavigator = createDrawerNavigator({
     navigationOptions: {
       title: 'Contact Us',
       drawerLabel: 'Contact Us',
-      drawerIcon: ({tintColor}) => (<Icon name="address-card" type="font-awesome" size={22} color={tintColor} />)
+      drawerIcon: ({ tintColor }) => (<Icon name="address-card" type="font-awesome" size={22} color={tintColor} />)
     },
   },
 }, {
