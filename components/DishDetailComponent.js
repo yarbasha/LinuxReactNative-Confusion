@@ -24,10 +24,15 @@ function RenderDish(props) {
 
 	const dish = props.dish;
 
-	handleViewRef = ref => this.view = ref;
+	handleViewRef = ref => view = ref;
 
 	const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
 		if (dx < -200) return true;
+		else return false;
+	};
+
+	const recognizeComment = ({ moveX, moveY, dx, dy }) => {
+		if (dx > 200) return true;
 		else return false;
 	};
 
@@ -36,7 +41,7 @@ function RenderDish(props) {
 			return true;
 		},
 		onPanResponderGrant: () => {
-			this.view.rubberBand(1000)
+			view.rubberBand(1000)
 				.then(endState => console.log(endState.finished ? 'finished' : 'cancelled'));
 		},
 		onPanResponderEnd: (e, gestureState) => {
@@ -56,13 +61,16 @@ function RenderDish(props) {
 					]
 				);
 			}
+			else if (recognizeComment(gestureState)) {
+				props.showModal();
+			}
 			return true;
 		}
 	});
 	if (dish != null) {
 		return (
 			<Animatable.View useNativeDriver={true} animation="fadeInDown" duration={2000} delay={1000}
-				ref={this.handleViewRef}
+				ref={handleViewRef}
 				{...panResponder.panHandlers}>
 				<Card
 					featuredTitle={dish.name}
