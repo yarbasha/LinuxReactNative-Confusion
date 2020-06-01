@@ -122,7 +122,17 @@ class RegisterTab extends Component {
         this.processImage(capturedImage.uri);
       }
     }
-  }
+  };
+
+  getImageFromGallery = async () => {
+    let pickedImage = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+    if (!pickedImage.cancelled) {
+      this.processImage(pickedImage.uri);
+    }
+  };
 
   processImage = async (imageUri) => {
     let processedImage = await ImageManipulator.manipulateAsync(
@@ -162,7 +172,8 @@ class RegisterTab extends Component {
             <Image source={{ uri: this.state.imageUrl }}
               loadingIndicatorSource={require('./images/logo.png')}
               style={styles.image} />
-            <Button title='Camera' buttonStyle={{ backgroundColor: '#512DA8' }} onPress={this.getImageFromCamera} />
+            <Button title='Camera' buttonStyle={{ backgroundColor: '#512DA8', margin: 10 }} onPress={this.getImageFromCamera} />
+            <Button title='Gallery' buttonStyle={{ backgroundColor: '#512DA8', margin: 10 }} onPress={this.getImageFromGallery} />
           </View>
           <Input placeholder=" Username"
             leftIcon={{ type: 'font-awesome', name: 'user-o' }}
@@ -213,6 +224,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   imageContainer: {
+    justifyContent: 'space-around',
     flex: 1,
     flexDirection: 'row',
     margin: 20
