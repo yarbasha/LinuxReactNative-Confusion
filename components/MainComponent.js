@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, ScrollView, Text } from 'react-native';
+import { View, Image, StyleSheet, ScrollView, Text, ToastAndroid } from 'react-native';
 import Menu from './MenuComponent';
 import Home from './HomeComponent';
 import About from './AboutComponent';
@@ -12,6 +12,7 @@ import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView 
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import NetInfo from "@react-native-community/netinfo";
 
 const mapStateToProps = state => {
   return {
@@ -231,6 +232,10 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
+    NetInfo.addEventListener(state => {
+      ToastAndroid.show("Connection type: " + state.type, ToastAndroid.LONG);
+      ToastAndroid.show("Is connected? " + state.isConnected, ToastAndroid.LONG);
+    });
   }
 
   render() {
